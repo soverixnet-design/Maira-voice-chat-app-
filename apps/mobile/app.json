@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Maira Voice Chat",
+    "slug": "maira-voice-chat",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "scheme": "maira",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.soverixnet.maira",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Maira uses your microphone when you speak in a voice room.",
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
+    },
+    "android": {
+      "package": "com.soverixnet.maira",
+      "permissions": [
+        "RECORD_AUDIO",
+        "MODIFY_AUDIO_SETTINGS"
+      ]
+    },
+    "plugins": [
+      "@livekit/react-native-expo-plugin",
+      [
+        "@config-plugins/react-native-webrtc",
+        {
+          "microphonePermission": "Allow Maira to use your microphone in voice rooms.",
+          "cameraPermission": "Maira is audio only."
+        }
+      ]
+    ],
+    "extra": {
+      "ownerName": "shakil"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn() { return request.auth != null; }
+  function admin() { return signedIn() && request.auth.token.admin == true; }
+  function self(uid) { return signedIn() && request.auth.uid == uid; }
+  match /users/{uid} { allow read: if self(uid) || admin(); allow write: if false; }
+  match /wallets/{uid} { allow read: if self(uid) || admin(); allow write: if false; }
+  match /rooms/{id} { allow read: if signedIn(); allow write: if false;
+   match /members/{uid} { allow read: if signedIn(); allow write: if false; }
+   match /messages/{id} { allow read: if signedIn(); allow write: if false; }
+  }
+  match /gifts/{id} { allow read: if signedIn(); allow write: if false; }
+  match /agencies/{id} { allow read: if signedIn(); allow write: if false; }
+  match /agencyApplications/{id} { allow read: if admin() || (signedIn() && resource.data.uid == request.auth.uid); allow write: if false; }
+  match /ledger/{id} { allow read: if admin() || (signedIn() && request.auth.uid in resource.data.participants); allow write: if false; }
+  match /salaries/{id} { allow read: if admin() || (signedIn() && resource.data.uid == request.auth.uid); allow write: if false; }
+  match /withdrawals/{id} { allow read: if admin() || (signedIn() && resource.data.uid == request.auth.uid); allow write: if false; }
+  match /reports/{id} { allow read: if admin(); allow write: if false; }
+  match /settings/{id} { allow read: if signedIn(); allow write: if false; }
+  match /{path=**} { allow read, write: if false; }
+ }
+}

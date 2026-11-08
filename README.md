@@ -28,7 +28,7 @@ npm run admin
 npm run mobile
 ```
 
-Live voice requires an **Expo development build**, not Expo Go. See [setup and deployment](docs/SETUP.md), [architecture](docs/ARCHITECTURE.md), and [release checklist](docs/RELEASE.md).
+Live voice requires an **Expo development build**, not Expo Go. See [setup and deployment](docs/SETUP.md), [architecture](docs/ARCHITECTURE.md), and [release checklist](docs/RELEASE.md), and [validation results](docs/VALIDATION.md).
 
 ## Honest release status
 
